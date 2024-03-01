@@ -1,0 +1,35 @@
+install terraform
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install terraform
+
+check terraform is install or not
+terraform --version
+
+mkdir terraform
+cd terraform
+vim provider.tf
+(create iam user with admin access and generate access_key and secret_key)
+provider aws {
+  region = "ap-south-1"
+  access_key = "AKIAVRUVV5VCEOIPLTNQ"
+  secret_key = "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"
+}
+save.
+(to create instance)
+vim instance.tf
+resource "aws_instance" "server" {
+  ami           = "ami-03f4878755434977f"
+  instance_type = "t2.micro"
+
+  tags = {
+    name = "hello"
+  }
+save.
+run following commands
+terraform init
+terraform plan
+terraform apply
+ec2 instance will be created.
+
+}
