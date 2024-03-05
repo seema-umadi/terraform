@@ -2,7 +2,7 @@ provider "aws" {
   region = "ap-south-1"  # Set your desired AWS region
 }
 
-# Define a security group allowing all traffic
+# Define a security group allowing all traffic enable
 resource "aws_security_group" "example_security_group" {
   name        = "example-security-group"
   description = "Example security group allowing all traffic"
